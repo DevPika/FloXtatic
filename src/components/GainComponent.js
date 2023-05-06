@@ -24,14 +24,17 @@ export default class GainComponent extends Rete.Component {
     }
 
     worker(node, inputs, outputs) {
-        node.data.gainNode.gain.value = node.data.gainValue; // TODO Better place?
+        node.data.gainNode.gain.value = node.data.gainValue;
+        // TODO Make this audioparam input node too?
 
         const input = inputs['gainIn'].length?inputs['gainIn'][0]:null;
-        if (input) {
-          // console.log(input);
+        if (input && !node.data.inputNode) {
+          // First time connected
+          console.log(input);
           node.data.inputNode = input;
           input.connect(node.data.gainNode);
-        } else if (node.data.inputNode) {
+        } else if (!input && node.data.inputNode) {
+          // No input so need to disconnect previous node
           node.data.inputNode.disconnect(node.data.gainNode);
           node.data.inputNode = null;
         }

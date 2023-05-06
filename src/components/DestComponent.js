@@ -14,11 +14,11 @@ export default class DestComponent extends Rete.Component {
 
     worker(node, inputs, outputs) {
         var input = inputs['audioNodeIn'].length?inputs['audioNodeIn'][0]:null;
-        if (input) {
+        if (input && !node.data.inputNode) {
           // console.log(input);
           node.data.inputNode = input;
           input.connect(node.data.audioNode);
-        } else if (node.data.inputNode) {
+        } else if (!input && node.data.inputNode) {
           node.data.inputNode.disconnect(node.data.audioNode);
           node.data.inputNode = null;
         }
