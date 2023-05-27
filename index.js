@@ -1,6 +1,7 @@
 import OscComponent from "./src/components/OscComponent.js"
 import GainComponent from "./src/components/GainComponent.js"
 import DestComponent from "./src/components/DestComponent.js"
+import ProcComponent from "./src/components/ProcComponent.js";
 
 // Start off by initializing a new context.
 var context = new (window.AudioContext || window.webkitAudioContext)();
@@ -24,7 +25,8 @@ var audioSocket = new Rete.Socket('Audio socket');
     var components = [
       new OscComponent(audioSocket, context),
       new GainComponent(audioSocket, context),
-      new DestComponent(audioSocket, context)
+      new DestComponent(audioSocket, context),
+      new ProcComponent(audioSocket, context),
     ];
     
     var editor = new Rete.NodeEditor('demo@0.1.0', container);
