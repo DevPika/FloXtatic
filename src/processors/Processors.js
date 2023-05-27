@@ -1,6 +1,6 @@
 export const ProcessorsList = [
-    "WhiteNoiseProcessor",
-    "WhiteNoiseModifiedProcessor",
+  "WhiteNoiseProcessor",
+  "WhiteNoiseModifiedProcessor",
 ];
 
 export const ProcessorsBasePath = "/src/processors/";
